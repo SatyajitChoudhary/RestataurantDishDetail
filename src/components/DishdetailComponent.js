@@ -10,7 +10,7 @@ class DishDetail extends Component {
            selectedDish: null
        }
    }
-
+   //Rendering Selected Disc
    renderDish(dish) {
        if (dish != null)
            return(
@@ -27,22 +27,25 @@ class DishDetail extends Component {
                <div></div>
            );
    }
+   // Rendering Comments
    renderComments(comments) {
      let content=[];
        if (comments.length !== 0)
        {
            comments.map((comment)=>{
              content.push(
-               <div>
-               <dl>{comment.comment}</dl>
-               <dl>-- {comment.author} {comment.date}</dl>
-               </div>
+               <li key={comments.id}>
+                 <dl>{comment.comment}</dl>
+                 <dl>-- {comment.author} ,{comment.date}</dl>
+               </li>
              )
-          });
+           });
            return(
              <div>
-              <h4>Comments</h4>
-              {content}
+                <h4>Comments</h4>
+                <ul className="list-unstyled">
+                {content}
+                </ul>
               </div>
            );
          }
