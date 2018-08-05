@@ -20,9 +20,10 @@ class CommentForm extends Component{
     this.toggleModal();
     console.log("Current State is: " + JSON.stringify(values));
     alert("Current State is: " + JSON.stringify(values));
+    this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
   }
   toggleModal() {
-    
+
     this.setState({
       isModalOpen: !this.state.isModalOpen
     });
@@ -109,7 +110,7 @@ class DishDetail extends Component {
            );
    }
    // Rendering Comments
-   renderComments(comments) {
+   renderComments(comments,dishId,addComment) {
      let content=[];
        if (comments.length !== 0)
        {
@@ -128,7 +129,7 @@ class DishDetail extends Component {
                 <ul className="list-unstyled">
                 {content}
                 </ul>
-                {<CommentForm />}
+                {<CommentForm dishId={dishId} addComment={addComment}/>}
               </div>
            );
          }
@@ -156,7 +157,7 @@ class DishDetail extends Component {
                       {this.renderDish(this.props.dish)}
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        {this.renderComments(this.props.comments)}
+                        {this.renderComments(this.props.comments,this.props.dish.id,this.props.addComment)}
                     </div>
                 </div>
               </div>
