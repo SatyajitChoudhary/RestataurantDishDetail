@@ -63,7 +63,16 @@ class Contact extends Component {
 
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values));
+        const feed={
+          firstname:values.firstname,
+          lastname:values.lastname,
+          telnum: values.telnum,
+          email: values.email,
+          agree: values.agree,
+          contactType: values.contactType,
+          message: values.message
+        }
+        this.props.postFeedback(feed);
         this.props.resetFeedbackForm();
         // event.preventDefault();
     }
@@ -233,6 +242,9 @@ class Contact extends Component {
                                 <Col md={{size:10, offset: 2}}>
                                     <Button type="submit" color="primary">
                                     Send Feedback
+                                    </Button>
+                                    <Button type="button" color="secondary" onClick={() => this.props.resetFeedbackForm()}>
+                                    Cancel
                                     </Button>
                                 </Col>
                             </Row>
